@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:6
+    container_name: apple-music-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"    # Requisito: exponer 27017
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      # Nombre de la base que usaremos en el seed y queries
+      MONGO_INITDB_DATABASE: apple_music
+
+volumes:
+  mongo_data:

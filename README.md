@@ -1,120 +1,135 @@
-# Apple Music Case Study
-**Universidad Da Vinci de Guatemala** **Curso:** Desarrollo Web / Bases de Datos II  
-**Catedrático:** Ing. Brandon Chitay
+# 🎵 Apple Music -- Data Analytics PoC
 
----
+### Universidad Da Vinci --- Bases de Datos II
 
-## 🎯 Objetivo
-Este repositorio contiene el **Kit de Inicio (Starter Kit)**. Su misión es actuar como arquitectos de datos para diseñar la infraestructura, persistencia y API de la nueva plataforma de analíticas de Apple Music.
+**Estudiante:** \[Jonnatan Danilo Macario Escobar\]\
+**Catedrático:** Ing. Brandon Chitay\
+**Fecha:** 07-12-2025
 
-El script incluido (`seed.js`) generará **miles de registros simulados** (Usuarios, Canciones, Artistas y Streams) para que puedan probar sus consultas en un entorno realista.
+------------------------------------------------------------------------
 
----
+# Descripción del Proyecto
 
-## 🚀 Instrucciones de Inicio (Setup)
+Este repositorio contiene la Prueba de Concepto (PoC) solicitada para el
+caso de estudio de Apple Music, donde se requiere diseñar una
+arquitectura de datos moderna capaz de procesar millones de streams por
+minuto y generar analíticas en tiempo real.
 
-Sigue estos pasos estrictamente para configurar tu entorno de examen.
+La solución incluye: - Contenedores Docker con MongoDB\
+- Seeder masivo\
+- Arquitectura NoSQL\
+- 5 Aggregation Pipelines\
+- API Design\
+- Dashboard visual con v0.app\
+- Presentación final
 
-### 1. Preparar el Repositorio
-Este repositorio es la base de tu entrega. No lo clones directamente, primero haz tu propia copia:
+------------------------------------------------------------------------
 
-1.  Da clic en el botón **Fork** (arriba a la derecha de esta página) para crear una copia en tu cuenta de GitHub.
-2.  Clona **tu nuevo repositorio** (el que está en tu perfil) a tu máquina local:
-    ```bash
-    git clone [https://github.com/TU_USUARIO/seeding.git](https://github.com/TU_USUARIO/seeding.git)
-    cd seeding
-    ```
+# Arquitectura General
 
-### 2. Instalar Dependencias del Seeder
-El script de generación de datos utiliza Node.js. Instala las librerías necesarias:
-```bash
-npm install
-````
+    MongoDB (Docker)
+       ├── users
+       ├── artists
+       ├── songs
+       └── streams
+            ↑
+            Aggregation Pipelines
+            ↑
+            API Design
+            ↑
+            Dashboard (v0)
 
-### 3\. Levantar Infraestructura (Docker)
+------------------------------------------------------------------------
 
-Antes de generar los datos, necesitas una base de datos corriendo.
+# 1. Infraestructura (Docker)
 
-  * Crea tu archivo `docker-compose.yml` (ver sección de Entregables abajo).
-  * Levanta el servicio:
-    ```bash
+Archivo: `database/docker-compose.yml`
+
+Ejecución:
+
     docker-compose up -d
-    ```
-  * **Importante:** Asegúrate de que MongoDB esté expuesto en el puerto `27017`.
 
-### 4\. Poblar la Base de Datos (Seeding)
+------------------------------------------------------------------------
 
-Una vez que Mongo esté corriendo, ejecuta el script mágico para llenar la DB con data de prueba:
+# 2. Data Seeding
 
-```bash
-npm start
-```
+Script: `seed.js`
 
-*Si ves el mensaje "✅ EXITO: Base de datos poblada", estás listo para empezar.*
+Genera: 
+- 100 usuarios\
+- 5 artistas\
+- 50 canciones\
+- 2000+ streams\
+- Usuarios zombis\
+- Sesgo hacia Guatemala y Bad Bunny
 
------
+Ejecutar:
 
-## 📂 Estructura de Entrega (Requerido)
+    npm install
+    npm start
 
-Para mantener el orden, debes crear las siguientes carpetas en este repositorio y colocar tus archivos donde corresponde. **El desorden será penalizado.**
+------------------------------------------------------------------------
 
-```text
-/
-├── api-design/
-│   └── api-spec.md         # Documentación de los 5 Endpoints (Request/Response)
-├── database/
-│   ├── docker-compose.yml  # Tu configuración de Docker
-│   ├── queries.js          # Tus 5 Agregaciones (Aggregation Pipelines)
-│   └── schema-diagram.pdf  # Imagen o PDF de tu diseño de esquema
-├── dashboard-v0/
-│   ├── screenshots/        # Capturas del dashboard generado en v0
-│   └── prompt.txt          # El prompt que usaste para generar la UI
-├── seed.js                 # (Ya incluido)
-├── package.json            # (Ya incluido)
-└── README.md               # (Este archivo)
-```
+# 3. Diseño del Esquema
 
------
+Archivo: `database/schema-diagram.pdf`
 
-## 📝 Lista de Tareas (Checklist)
+Incluye: 
+- users\
+- artists\
+- songs\
+- streams
 
-Para ganar los 100 puntos, asegúrate de completar:
+------------------------------------------------------------------------
 
-  - [ ] **Infraestructura:** Docker corre correctamente y tiene persistencia de datos (Volumes).
-  - [ ] **Datos:** El script `npm start` corre sin errores y genera usuarios "Zombis" y datos de Guatemala.
-  - [ ] **Consultas:** El archivo `database/queries.js` contiene las 5 agregaciones solicitadas en el enunciado
-  - [ ] **API:** El diseño de los endpoints en `api-design/` coincide lógicamente con lo que muestra el Dashboard.
-  - [ ] **Visualización:** Las capturas en `dashboard-v0/` muestran una interfaz coherente con los datos.
-  - [ ] **Video:** Has subido tu video explicativo (link en la entrega del portal o en este README al final).
+# 4. Aggregation Pipelines
 
------
+Archivo: `database/queries.js`
 
-## ⚠️ Solución de Problemas (Troubleshooting)
+Consultas: 
+1. Regalías por artista\
+2. Top 10 GT\
+3. Usuarios Premium Zombis\
+4. Demografía (Reggaeton)\
+5. Heavy Users Bad Bunny
 
-**Error: "connect ECONNREFUSED 127.0.0.1:27017"**
+------------------------------------------------------------------------
 
-  * **Causa:** Tu contenedor de Docker no está corriendo o no mapeaste el puerto.
-  * **Solución:** Revisa tu `docker-compose.yml` y asegúrate de tener `ports: - "27017:27017"`.
+# 5. Diseño de API
 
-**Error: "Cannot find module..."**
+Archivo: `api-design/api-spec.md`
 
-  * **Causa:** No instalaste las librerías.
-  * **Solución:** Ejecuta `npm install` en la raíz del proyecto.
+Endpoints bien documentados: 
+- /analytics/royalties\
+- /charts/top10\
+- /users/zombies\
+- /demographics/reggaeton\
+- /users/heavy/badbunny
 
------
+------------------------------------------------------------------------
 
-### 📅 Fecha Límite: 06 de Diciembre
+# 6. Dashboard Visual (v0.app)
 
-¡Éxito, Ingenieros\! 🍏🎵
+Carpeta: `dashboard-v0/screenshots/`
 
-```
+Prompt usado: `dashboard-v0/prompt.txt`
 
-***
+Incluye capturas de:
+- Regalías\
+- Top10\
+- Zombis\
+- Edades\
+- Heavy Users
 
-### ¿Por qué funciona este README?
+------------------------------------------------------------------------
 
-1.  **Reduce la fricción cognitiva:** Les dice exactamente qué comando ejecutar (`npm install`, `npm start`).
-2.  **Estandariza la entrega:** La sección "Estructura de Entrega" te salvará horas de calificación. Ya no tendrás que buscar dónde puso cada alumno el `docker-compose`.
-3.  **Checklist:** Les da seguridad psicológica de que "ya terminaron" si marcaron todas las casillas.
-4.  **Troubleshooting:** Previene que te escriban correos preguntando por errores básicos de conexión a Mongo.
-```
+# 7. Defensa (Video)
+
+Link al video: **\[https://drive.google.com/file/d/1YIBgcArYFuA2AYW_cmS__B_qF2lKl-d0/view?usp=sharing\]** 
+
+------------------------------------------------------------------------
+
+# Proyecto listo para entrega
+
+Esta solución demuestra una arquitectura NoSQL escalable, consultas
+complejas y un dashboard profesional para Apple Music.

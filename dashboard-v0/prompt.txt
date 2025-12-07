@@ -1,0 +1,36 @@
+Quiero que generes un dashboard de analítica para Apple Music basado en estas 5 métricas de negocio. 
+El estilo debe ser limpio, profesional y similar a plataformas de analytics como Amplitude o Mixpanel.
+
+El dashboard debe incluir:
+
+1. Tarjeta de “Regalías por Artista (Último Mes)”
+   - Mostrar artista
+   - Tiempo total reproducido (segundos)
+   - Gráfica de barras por artista
+
+2. Top 10 Canciones en Guatemala (Últimos 7 días)
+   - Tabla con: canción, artista, total de reproducciones
+   - Gráfica de ranking o barras horizontales
+
+3. Usuarios Zombis Premium
+   - Contador grande: número de usuarios inactivos
+   - Lista pequeña con username y país
+
+4. Distribución de Edades de Oyentes de Reggaeton
+   - Gráfica de pastel o de barras por rango de edad
+
+5. Heavy Users de Bad Bunny
+   - Tabla con: username, email, número de canciones distintas escuchadas
+   - Badge tipo “Top Listener”
+
+Diseña todo el dashboard en una sola vista tipo “Analytics Overview”.
+
+Colores sugeridos:
+- Fondo claro
+- Tarjetas con borde suave
+- Gráficas en tonos azul, morado y cyan
+
+No uses datos reales; usa placeholders. 
+No generes código backend, solo HTML/CSS/JS dentro del editor de v0.
+
+El resultado debe ser visual, bonito y claro para presentar a un cliente.
